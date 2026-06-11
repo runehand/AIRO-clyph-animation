@@ -31,17 +31,17 @@
     }
 
     main {
-      min-height: 100vh;
+      min-height: 100svh;
       display: grid;
       place-items: center;
-      padding: clamp(24px, 5vw, 58px);
+      padding: clamp(24px, 4vw, 42px) clamp(16px, 4vw, 44px);
     }
 
     .asset-glyph {
       width: min(820px, 100%);
       display: grid;
       justify-items: center;
-      gap: clamp(26px, 4vw, 48px);
+      gap: clamp(24px, 3.4vw, 38px);
       padding: clamp(10px, 3vw, 28px);
       background: radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.03), transparent 54%);
     }
@@ -56,7 +56,7 @@
     .asset-title {
       margin: 0;
       color: var(--state-color);
-      font-size: clamp(44px, 7vw, 82px);
+      font-size: clamp(46px, 6.4vw, 82px);
       font-weight: 900;
       line-height: 0.95;
       letter-spacing: 0;
@@ -70,14 +70,15 @@
       min-height: 36px;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(19px, 2.5vw, 28px);
+      font-size: clamp(19px, 2.1vw, 28px);
       line-height: 1.35;
       font-weight: 500;
       transition: opacity 260ms ease;
     }
 
     .glyph {
-      width: min(690px, 94vw);
+      width: min(640px, 92vw, 62svh);
+      max-width: 100%;
       overflow: visible;
     }
 
@@ -166,17 +167,97 @@
       pointer-events: none;
     }
 
+    @media (min-width: 1180px) {
+      .asset-glyph {
+        width: min(860px, 100%);
+      }
+
+      .glyph {
+        width: min(640px, 88vw, 62svh);
+      }
+    }
+
+    @media (max-width: 900px) {
+      main {
+        padding: clamp(24px, 5vw, 44px) clamp(16px, 4vw, 28px);
+      }
+
+      .asset-glyph {
+        width: min(720px, 100%);
+        gap: clamp(22px, 4vw, 34px);
+      }
+
+      .copy {
+        gap: 14px;
+      }
+
+      .asset-title {
+        font-size: clamp(40px, 8vw, 68px);
+      }
+
+      .asset-subtitle {
+        max-width: 640px;
+        font-size: clamp(18px, 2.7vw, 24px);
+      }
+
+      .glyph {
+        width: min(620px, 94vw, 64svh);
+      }
+    }
+
     @media (max-width: 620px) {
       main {
+        align-items: center;
         padding: 24px 14px;
       }
 
       .asset-glyph {
-        gap: 22px;
+        width: 100%;
+        gap: 18px;
+        padding: 4px 0;
+      }
+
+      .copy {
+        gap: 10px;
+      }
+
+      .asset-title {
+        font-size: clamp(32px, 11vw, 44px);
+        line-height: 1;
+        text-shadow: 0 0 18px color-mix(in srgb, var(--state-color) 42%, transparent);
+      }
+
+      .asset-subtitle {
+        max-width: 320px;
+        min-height: 44px;
+        font-size: clamp(15px, 4.1vw, 17px);
+        line-height: 1.32;
       }
 
       .glyph {
-        width: min(540px, 98vw);
+        width: min(340px, 86vw, 56svh);
+      }
+    }
+
+    @media (max-height: 760px) and (min-width: 700px) {
+      .asset-glyph {
+        gap: 18px;
+      }
+
+      .copy {
+        gap: 10px;
+      }
+
+      .asset-title {
+        font-size: clamp(38px, 5vw, 62px);
+      }
+
+      .asset-subtitle {
+        font-size: clamp(17px, 1.8vw, 22px);
+      }
+
+      .glyph {
+        width: min(560px, 76vw, 62svh);
       }
     }
   </style>
