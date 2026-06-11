@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIRO Capital State Glyph Prototype</title>
+  <style>
+    :root {
+      --ink: #091737;
+      --muted: #586276;
+      --line: #d9dee7;
+      --green: #3f8f24;
+      --green-deep: #2e741f;
+      --amber: #d99a00;
+      --red: #d91f12;
+      --red-deep: #b70d08;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(63, 143, 36, 0.11), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(217, 31, 18, 0.09), transparent 28%),
+        linear-gradient(180deg, #fbfcfe 0%, #eef3f8 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 28px 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 20px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4.4vw, 58px);
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: #3e485e;
+      font-size: clamp(18px, 2vw, 27px);
+      line-height: 1.35;
+    }
+
+    .subtitle strong {
+      color: var(--green-deep);
+    }
+
+    .subtitle b {
+      color: #155bd4;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 14px 42px rgba(15, 31, 61, 0.08);
+    }
+
+    button {
+      height: 40px;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      color: var(--ink);
+      background: #fff;
+      font: 800 13px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .state-btn {
+      min-width: 94px;
+      padding: 0 14px;
+    }
+
+    .play-btn {
+      width: 42px;
+      font-size: 18px;
+    }
+
+    button:hover,
+    button[aria-pressed="true"] {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .prototype {
+      display: grid;
+      grid-template-columns: minmax(330px, 1fr) 360px;
+      gap: 30px;
+      align-items: center;
+      padding: clamp(22px, 4vw, 52px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 26px 80px rgba(15, 31, 61, 0.12);
+    }
+
+    .glyph-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+    }
+
+    .state-title {
+      margin: 0;
+      color: var(--state-color);
+      font-size: clamp(28px, 3.1vw, 42px);
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      transition: color 700ms ease;
+    }
+
+    .state-description {
+      min-height: 64px;
+      margin: 0;
+      color: #273048;
+      font-size: clamp(17px, 1.8vw, 23px);
+      line-height: 1.42;
+      text-align: center;
+      transition: opacity 300ms ease;
+    }
+
+    .glyph {
+      width: min(640px, 100%);
+      overflow: visible;
+    }
+
+    .ring-bg {
+      fill: none;
+      stroke: #eef1f5;
+      stroke-width: 11;
+    }
+
+    .outer-ring {
+      fill: none;
+      stroke: var(--state-color);
+      stroke-width: 12;
+      stroke-linecap: round;
+      transform-origin: 240px 240px;
+      transform: rotate(-90deg);
+      transition: stroke 850ms ease, stroke-dasharray 1000ms cubic-bezier(.2,.8,.2,1), filter 850ms ease;
+      filter: drop-shadow(0 9px 14px rgba(13, 30, 59, 0.12));
+    }
+
+    .guide {
+      stroke: #cfd5df;
+      stroke-width: 1.4;
+      stroke-dasharray: 5 5;
+    }
+
+    .cap,
+    .risk,
+    .plane {
+      transition: transform 1000ms cubic-bezier(.2,.8,.2,1), opacity 700ms ease;
+    }
+
+    .cap {
+      transform-origin: 240px 176px;
+      filter: drop-shadow(0 12px 18px rgba(17, 45, 14, 0.18));
+    }
+
+    .risk {
+      transform-origin: 240px 304px;
+      filter: drop-shadow(0 12px 18px rgba(145, 9, 6, 0.16));
+    }
+
+    .plane {
+      transform-origin: 240px 240px;
+    }
+
+    .plane line {
+      stroke: #06183a;
+      stroke-width: 5;
+      stroke-linecap: round;
+    }
+
+    .plane path {
+      fill: #06183a;
+    }
+
+    .pivot {
+      fill: #06183a;
+      filter: drop-shadow(0 7px 12px rgba(6, 20, 48, 0.3));
+      animation: pivotPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pivotPulse {
+      0%, 100% {
+        transform: scale(1);
+        transform-origin: 240px 240px;
+      }
+      50% {
+        transform: scale(1.1);
+        transform-origin: 240px 240px;
+      }
+    }
+
+    .readout {
+      align-self: stretch;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+      border-left: 1px solid var(--line);
+      padding-left: 30px;
+    }
+
+    .score-block {
+      display: grid;
+      gap: 10px;
+    }
+
+    .score-label {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .score-main {
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    .metric-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .metric-code {
+      font-size: 25px;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .metric h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .metric p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .opp-code {
+      color: var(--green-deep);
+    }
+
+    .risk-code {
+      color: var(--red-deep);
+    }
+
+    .market-code {
+      color: var(--state-color);
+      transition: color 700ms ease;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      overflow: hidden;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      min-height: 96px;
+      padding: 16px;
+    }
+
+    .legend-item + .legend-item {
+      border-left: 1px solid var(--line);
+    }
+
+    .legend-title {
+      margin: 0 0 5px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .legend-copy {
+      margin: 0;
+      color: #1f2940;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .footnote {
+      margin: 0;
+      color: #596279;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      main {
+        width: min(100vw - 22px, 1180px);
+      }
+
+      .topbar,
+      .prototype,
+      .legend {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .readout {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding: 24px 0 0;
+      }
+
+      .legend-item + .legend-item {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .controls {
+        display: grid;
+        grid-template-columns: 42px repeat(3, 1fr);
+      }
+
+      .state-btn {
+        min-width: 0;
+        padding: 0 8px;
+      }
+
+      .prototype {
+        padding: 18px;
+      }
+
+      .score-main {
+        font-size: 62px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <linearGradient id="oppGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#9bd13c"></stop>
+        <stop offset="100%" stop-color="#2f741f"></stop>
+      </linearGradient>
+      <linearGradient id="riskGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ff6a55"></stop>
+        <stop offset="100%" stop-color="#c60603"></stop>
+      </linearGradient>
+      <linearGradient id="ringGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#3f8f24"></stop>
+        <stop offset="52%" stop-color="#d99a00"></stop>
+        <stop offset="100%" stop-color="#d91f12"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <h1>AIRO Capital State Glyph</h1>
+        <p class="subtitle">Capital has a <strong>fitness</strong>. <b>States</b> change. Fitness drives outcomes.</p>
+      </div>
+      <nav class="controls" aria-label="Capital state controls">
+        <button class="play-btn" id="playPause" type="button" aria-label="Pause animation" aria-pressed="true">Ⅱ</button>
+        <button class="state-btn" type="button" data-state="0">Bull</button>
+        <button class="state-btn" type="button" data-state="1">Neutral</button>
+        <button class="state-btn" type="button" data-state="2">Bear</button>
+      </nav>
+    </header>
+
+    <section class="prototype" id="prototype" style="--state-color: var(--green);" aria-label="Animated capital state glyph">
+      <div class="glyph-wrap">
+        <h2 class="state-title" id="stateTitle">Strong Bull</h2>
+        <p class="state-description" id="stateDescription">High Opportunity, Low Risk, Favorable Environment</p>
+
+        <svg class="glyph" viewBox="0 0 480 480" role="img" aria-label="Capital state glyph">
+          <circle class="ring-bg" cx="240" cy="240" r="202"></circle>
+          <circle class="outer-ring" id="outerRing" cx="240" cy="240" r="202"></circle>
+          <line class="guide" x1="48" y1="176" x2="432" y2="176"></line>
+          <line class="guide" x1="48" y1="304" x2="432" y2="304"></line>
+          <path class="cap" id="opportunityShape" d="M 96 176 A 144 112 0 0 1 384 176 L 96 176 Z" fill="url(#oppGradient)"></path>
+          <path class="risk" id="riskShape" d="M 88 304 A 152 112 0 0 0 392 304 L 88 304 Z" fill="url(#riskGradient)"></path>
+          <g class="plane" id="marketPlane">
+            <line x1="72" y1="240" x2="408" y2="240"></line>
+            <path id="planeArrow" d="M 408 240 L 388 228 L 392 240 L 388 252 Z"></path>
+          </g>
+          <circle class="pivot" cx="240" cy="240" r="14"></circle>
+        </svg>
+      </div>
+
+      <aside class="readout" aria-label="Current state readout">
+        <div class="score-block">
+          <div class="score-label">Capital Fitness Score</div>
+          <div class="score-main">CFI <span id="scoreValue">82</span></div>
+        </div>
+
+        <div class="metric-list">
+          <div class="metric">
+            <div class="metric-code opp-code" id="oppCode">O3</div>
+            <div>
+              <h3>Opportunity</h3>
+              <p id="oppText">High opportunity. Upper half expands.</p>
+            </div>
+          </div>
+
+          <div class="metric">
+            <div class="metric-code risk-code" id="riskCode">R1</div>
+            <div>
+              <h3>Economic Risk</h3>
+              <p id="riskText">Low risk. Lower half contracts.</p>
+            </div>
+          </div>
+
+          <div class="metric">
+            <div class="metric-code market-code" id="marketCode">↗</div>
+            <div>
+              <h3>Market Plane</h3>
+              <p id="marketText">Bull regime. Divider rotates upward.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="legend" aria-label="Glyph legend">
+      <div class="legend-item">
+        <svg viewBox="0 0 70 50" aria-hidden="true">
+          <path d="M 8 40 A 27 24 0 0 1 62 40 L 8 40 Z" fill="url(#oppGradient)"></path>
+        </svg>
+        <div><p class="legend-title">Opportunity</p><p class="legend-copy">Top Half<br>O1 Low - O3 High</p></div>
+      </div>
+      <div class="legend-item">
+        <svg viewBox="0 0 70 50" aria-hidden="true">
+          <path d="M 8 12 A 27 24 0 0 0 62 12 L 8 12 Z" fill="url(#riskGradient)"></path>
+        </svg>
+        <div><p class="legend-title">Economic Risk</p><p class="legend-copy">Bottom Half<br>R1 Low - R3 High</p></div>
+      </div>
+      <div class="legend-item">
+        <svg viewBox="0 0 78 50" aria-hidden="true">
+          <line x1="10" y1="25" x2="68" y2="25" stroke="#06183a" stroke-width="5" stroke-linecap="round"></line>
+          <circle cx="39" cy="25" r="7" fill="#06183a"></circle>
+        </svg>
+        <div><p class="legend-title">Market Plane</p><p class="legend-copy">Bear ↘ Neutral → Bull ↗</p></div>
+      </div>
+      <div class="legend-item">
+        <svg viewBox="0 0 70 50" aria-hidden="true">
+          <circle cx="35" cy="25" r="14" fill="#06183a"></circle>
+        </svg>
+        <div><p class="legend-title">Center Pivot</p><p class="legend-copy">Current capital state</p></div>
+      </div>
+      <div class="legend-item">
+        <svg viewBox="0 0 70 50" aria-hidden="true">
+          <circle cx="35" cy="25" r="20" fill="none" stroke="url(#ringGradient)" stroke-width="8"></circle>
+        </svg>
+        <div><p class="legend-title">Outer Ring</p><p class="legend-copy">Capital Fitness 0 - 100</p></div>
+      </div>
+    </section>
+
+    <p class="footnote">One animated glyph transitions between Capital States so investors can read changing fitness, opportunity, risk and market regime as a single visual system.</p>
+  </main>
+
+  <script>
+    const states = [
+      {
+        title: 'Strong Bull',
+        description: 'High Opportunity, Low Risk, Favorable Environment',
+        cfi: 82,
+        opportunity: 3,
+        risk: 1,
+        angle: -11,
+        color: '#3f8f24',
+        symbol: '↗',
+        oppText: 'High opportunity. Upper half expands.',
+        riskText: 'Low risk. Lower half contracts.',
+        marketText: 'Bull regime. Divider rotates upward.'
+      },
+      {
+        title: 'Neutral',
+        description: 'Balanced Opportunity and Risk, Neutral Environment',
+        cfi: 58,
+        opportunity: 2,
+        risk: 2,
+        angle: 0,
+        color: '#d99a00',
+        symbol: '−',
+        oppText: 'Moderate opportunity. Upper half settles.',
+        riskText: 'Moderate risk. Lower half balances.',
+        marketText: 'Neutral regime. Divider returns flat.'
+      },
+      {
+        title: 'Bear',
+        description: 'Limited Opportunity, High Risk, Challenging Environment',
+        cfi: 27,
+        opportunity: 1,
+        risk: 3,
+        angle: 12,
+        color: '#d91f12',
+        symbol: '↘',
+        oppText: 'Low opportunity. Upper half contracts.',
+        riskText: 'High risk. Lower half expands.',
+        marketText: 'Bear regime. Divider rotates downward.'
+      }
+    ];
+
+    const scaleByLevel = {
+      opportunity: { 1: 0.49, 2: 0.76, 3: 1 },
+      risk: { 1: 0.42, 2: 0.68, 3: 1 }
+    };
+
+    const ringCircumference = 2 * Math.PI * 202;
+    const root = document.querySelector('#prototype');
+    const title = document.querySelector('#stateTitle');
+    const description = document.querySelector('#stateDescription');
+    const scoreValue = document.querySelector('#scoreValue');
+    const outerRing = document.querySelector('#outerRing');
+    const opportunityShape = document.querySelector('#opportunityShape');
+    const riskShape = document.querySelector('#riskShape');
+    const marketPlane = document.querySelector('#marketPlane');
+    const planeArrow = document.querySelector('#planeArrow');
+    const oppCode = document.querySelector('#oppCode');
+    const riskCode = document.querySelector('#riskCode');
+    const marketCode = document.querySelector('#marketCode');
+    const oppText = document.querySelector('#oppText');
+    const riskText = document.querySelector('#riskText');
+    const marketText = document.querySelector('#marketText');
+    const buttons = [...document.querySelectorAll('[data-state]')];
+    const playPause = document.querySelector('#playPause');
+
+    let activeState = 0;
+    let playing = true;
+    let timer = null;
+    let currentScore = states[0].cfi;
+
+    function ringDash(score) {
+      return `${Math.max(16, ringCircumference * (score / 100))} ${ringCircumference}`;
+    }
+
+    function animateScore(toValue) {
+      const fromValue = currentScore;
+      const start = performance.now();
+      const duration = 900;
+
+      function frame(now) {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        currentScore = Math.round(fromValue + (toValue - fromValue) * eased);
+        scoreValue.textContent = currentScore;
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function setState(index, userInitiated = false) {
+      const state = states[index];
+      activeState = index;
+
+      root.style.setProperty('--state-color', state.color);
+      title.textContent = state.title;
+      description.textContent = state.description;
+      outerRing.style.stroke = state.color;
+      outerRing.style.strokeDasharray = ringDash(state.cfi);
+      opportunityShape.style.transform = `scale(${scaleByLevel.opportunity[state.opportunity]})`;
+      riskShape.style.transform = `scale(${scaleByLevel.risk[state.risk]})`;
+      marketPlane.style.transform = `rotate(${state.angle}deg)`;
+      planeArrow.style.opacity = state.angle === 0 ? '0' : '1';
+
+      animateScore(state.cfi);
+      oppCode.textContent = `O${state.opportunity}`;
+      riskCode.textContent = `R${state.risk}`;
+      marketCode.textContent = state.symbol;
+      oppText.textContent = state.oppText;
+      riskText.textContent = state.riskText;
+      marketText.textContent = state.marketText;
+
+      buttons.forEach((button, buttonIndex) => {
+        button.setAttribute('aria-pressed', String(buttonIndex === index));
+      });
+
+      if (userInitiated) stopCycle();
+    }
+
+    function startCycle() {
+      playing = true;
+      playPause.textContent = 'Ⅱ';
+      playPause.setAttribute('aria-label', 'Pause animation');
+      playPause.setAttribute('aria-pressed', 'true');
+      window.clearInterval(timer);
+      timer = window.setInterval(() => {
+        setState((activeState + 1) % states.length);
+      }, 2600);
+    }
+
+    function stopCycle() {
+      playing = false;
+      playPause.textContent = '▶';
+      playPause.setAttribute('aria-label', 'Play animation');
+      playPause.setAttribute('aria-pressed', 'false');
+      window.clearInterval(timer);
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => setState(Number(button.dataset.state), true));
+    });
+
+    playPause.addEventListener('click', () => {
+      if (playing) {
+        stopCycle();
+      } else {
+        startCycle();
+      }
+    });
+
+    outerRing.style.strokeDasharray = ringDash(states[0].cfi);
+    setState(0);
+    startCycle();
+  </script>
+</body>
+</html>
