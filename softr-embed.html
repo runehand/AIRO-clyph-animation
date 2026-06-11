@@ -1,0 +1,324 @@
+<div id="airo-capital-glyph-embed" class="airo-capital-glyph-embed">
+  <style>
+    #airo-capital-glyph-embed {
+      --airo-state-color: #78f22f;
+      --airo-cyan: #8eeeff;
+      --airo-ink: #f7faff;
+      --airo-muted: #d8dfeb;
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(24px, 5vw, 58px) clamp(14px, 4vw, 36px);
+      color: var(--airo-ink);
+      background:
+        radial-gradient(circle at 50% 42%, rgba(120, 242, 47, 0.1), transparent 27%),
+        radial-gradient(circle at 53% 66%, rgba(255, 36, 29, 0.08), transparent 24%),
+        linear-gradient(180deg, #010306 0%, #02050a 58%, #000102 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    #airo-capital-glyph-embed *,
+    #airo-capital-glyph-embed *::before,
+    #airo-capital-glyph-embed *::after {
+      box-sizing: border-box;
+    }
+
+    #airo-capital-glyph-embed .airo-glyph-asset {
+      width: min(820px, 100%);
+      display: grid;
+      justify-items: center;
+      gap: clamp(26px, 4vw, 48px);
+      padding: clamp(10px, 3vw, 28px);
+      background: radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.03), transparent 54%);
+    }
+
+    #airo-capital-glyph-embed .airo-copy {
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    #airo-capital-glyph-embed .airo-title {
+      margin: 0;
+      color: var(--airo-state-color);
+      font-size: clamp(44px, 7vw, 82px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-shadow: 0 0 24px color-mix(in srgb, var(--airo-state-color) 46%, transparent);
+      transition: color 850ms ease, text-shadow 850ms ease, opacity 260ms ease;
+    }
+
+    #airo-capital-glyph-embed .airo-subtitle {
+      max-width: 760px;
+      min-height: 36px;
+      margin: 0;
+      color: var(--airo-muted);
+      font-size: clamp(19px, 2.5vw, 28px);
+      line-height: 1.35;
+      font-weight: 500;
+      transition: opacity 260ms ease;
+    }
+
+    #airo-capital-glyph-embed .airo-glyph {
+      width: min(690px, 94vw);
+      overflow: visible;
+    }
+
+    #airo-capital-glyph-embed .airo-ring-bg {
+      fill: none;
+      stroke: #111923;
+      stroke-width: 12;
+      filter: drop-shadow(0 0 8px rgba(142, 238, 255, 0.12));
+    }
+
+    #airo-capital-glyph-embed .airo-outer-ring {
+      fill: none;
+      stroke: var(--airo-state-color);
+      stroke-width: 12;
+      stroke-linecap: round;
+      transform-origin: 240px 240px;
+      transform: rotate(-90deg);
+      transition:
+        stroke 950ms ease,
+        stroke-dasharray 1100ms cubic-bezier(.2,.8,.2,1),
+        filter 950ms ease;
+      filter: drop-shadow(0 0 18px rgba(120, 242, 47, 0.74));
+    }
+
+    #airo-capital-glyph-embed .airo-guide {
+      stroke: #344156;
+      stroke-width: 1.5;
+      stroke-dasharray: 6 7;
+      opacity: 0.72;
+    }
+
+    #airo-capital-glyph-embed .airo-cap,
+    #airo-capital-glyph-embed .airo-risk,
+    #airo-capital-glyph-embed .airo-plane {
+      transition: transform 1100ms cubic-bezier(.2,.8,.2,1), opacity 850ms ease;
+    }
+
+    #airo-capital-glyph-embed .airo-cap {
+      transform-origin: 240px 176px;
+      filter: drop-shadow(0 0 18px rgba(141, 255, 58, 0.82));
+    }
+
+    #airo-capital-glyph-embed .airo-risk {
+      transform-origin: 240px 304px;
+      filter: drop-shadow(0 0 16px rgba(255, 36, 29, 0.88));
+    }
+
+    #airo-capital-glyph-embed .airo-plane {
+      transform-origin: 240px 240px;
+    }
+
+    #airo-capital-glyph-embed .airo-plane line {
+      stroke: var(--airo-cyan);
+      stroke-width: 5.5;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 10px rgba(142, 238, 255, 0.95));
+    }
+
+    #airo-capital-glyph-embed .airo-plane path {
+      fill: var(--airo-cyan);
+      filter: drop-shadow(0 0 10px rgba(142, 238, 255, 0.95));
+    }
+
+    #airo-capital-glyph-embed .airo-pivot {
+      fill: #020407;
+      stroke: rgba(255, 255, 255, 0.45);
+      stroke-width: 1.4;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+    }
+
+    #airo-capital-glyph-embed .airo-pivot-ring {
+      fill: none;
+      stroke: var(--airo-state-color);
+      stroke-width: 1.6;
+      opacity: 0.64;
+      transition: stroke 950ms ease;
+    }
+
+    #airo-capital-glyph-embed .airo-center-score {
+      fill: #ffffff;
+      font-size: 42px;
+      font-weight: 900;
+      text-anchor: middle;
+      dominant-baseline: central;
+      filter: drop-shadow(0 0 9px rgba(255, 255, 255, 0.34));
+      pointer-events: none;
+    }
+
+    @media (max-width: 620px) {
+      #airo-capital-glyph-embed {
+        padding: 24px 14px;
+      }
+
+      #airo-capital-glyph-embed .airo-glyph-asset {
+        gap: 22px;
+      }
+
+      #airo-capital-glyph-embed .airo-glyph {
+        width: min(540px, 98vw);
+      }
+    }
+  </style>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <linearGradient id="airoOppGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b5ff34"></stop>
+        <stop offset="55%" stop-color="#68d91f"></stop>
+        <stop offset="100%" stop-color="#235e13"></stop>
+      </linearGradient>
+      <linearGradient id="airoRiskGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ff5a4d"></stop>
+        <stop offset="54%" stop-color="#f01913"></stop>
+        <stop offset="100%" stop-color="#6e0200"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <section class="airo-glyph-asset" aria-label="Animated capital state asset glyph">
+    <div class="airo-copy">
+      <h2 class="airo-title" data-airo-title>Asset A</h2>
+      <p class="airo-subtitle" data-airo-subtitle>High Opportunity, Low Risk, Favorable Environment</p>
+    </div>
+
+    <svg class="airo-glyph" viewBox="0 0 480 480" role="img" aria-label="Capital state glyph">
+      <circle class="airo-ring-bg" cx="240" cy="240" r="202"></circle>
+      <circle class="airo-outer-ring" data-airo-outer-ring cx="240" cy="240" r="202"></circle>
+      <line class="airo-guide" x1="48" y1="176" x2="432" y2="176"></line>
+      <line class="airo-guide" x1="48" y1="304" x2="432" y2="304"></line>
+      <path class="airo-cap" data-airo-opportunity d="M 96 176 A 144 112 0 0 1 384 176 L 96 176 Z" fill="url(#airoOppGradient)"></path>
+      <path class="airo-risk" data-airo-risk d="M 88 304 A 152 112 0 0 0 392 304 L 88 304 Z" fill="url(#airoRiskGradient)"></path>
+      <g class="airo-plane" data-airo-market-plane>
+        <line x1="72" y1="240" x2="408" y2="240"></line>
+        <path data-airo-plane-arrow d="M 408 240 L 388 228 L 392 240 L 388 252 Z"></path>
+      </g>
+      <circle class="airo-pivot" cx="240" cy="240" r="34"></circle>
+      <circle class="airo-pivot-ring" cx="240" cy="240" r="35"></circle>
+      <text class="airo-center-score" data-airo-center-score x="240" y="240">82</text>
+    </svg>
+  </section>
+
+  <script>
+    (() => {
+      const root = document.querySelector('#airo-capital-glyph-embed');
+      if (!root || root.dataset.airoInitialized === 'true') return;
+      root.dataset.airoInitialized = 'true';
+
+      const states = [
+        {
+          title: 'Asset A',
+          subtitle: 'High Opportunity, Low Risk, Favorable Environment',
+          cfi: 82,
+          opportunity: 3,
+          risk: 1,
+          angle: -11,
+          color: '#78f22f'
+        },
+        {
+          title: 'Asset B',
+          subtitle: 'Balanced Opportunity and Risk, Neutral Environment',
+          cfi: 58,
+          opportunity: 2,
+          risk: 2,
+          angle: 0,
+          color: '#ffbd28'
+        },
+        {
+          title: 'Asset C',
+          subtitle: 'Limited Opportunity, High Risk, Challenging Environment',
+          cfi: 27,
+          opportunity: 1,
+          risk: 3,
+          angle: 12,
+          color: '#ff241d'
+        }
+      ];
+
+      const scaleByLevel = {
+        opportunity: { 1: 0.49, 2: 0.76, 3: 1 },
+        risk: { 1: 0.42, 2: 0.68, 3: 1 }
+      };
+
+      const ringCircumference = 2 * Math.PI * 202;
+      const title = root.querySelector('[data-airo-title]');
+      const subtitle = root.querySelector('[data-airo-subtitle]');
+      const centerScore = root.querySelector('[data-airo-center-score]');
+      const outerRing = root.querySelector('[data-airo-outer-ring]');
+      const opportunityShape = root.querySelector('[data-airo-opportunity]');
+      const riskShape = root.querySelector('[data-airo-risk]');
+      const marketPlane = root.querySelector('[data-airo-market-plane]');
+      const planeArrow = root.querySelector('[data-airo-plane-arrow]');
+
+      let activeState = 0;
+      let currentScore = states[0].cfi;
+
+      function ringDash(score) {
+        return `${Math.max(18, ringCircumference * (score / 100))} ${ringCircumference}`;
+      }
+
+      function animateScore(toValue) {
+        const fromValue = currentScore;
+        const start = performance.now();
+        const duration = 920;
+
+        function frame(now) {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          currentScore = Math.round(fromValue + (toValue - fromValue) * eased);
+          centerScore.textContent = currentScore;
+          if (progress < 1) requestAnimationFrame(frame);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      function updateCopy(state) {
+        title.style.opacity = '0';
+        subtitle.style.opacity = '0';
+
+        window.setTimeout(() => {
+          title.textContent = state.title;
+          subtitle.textContent = state.subtitle;
+          title.style.opacity = '1';
+          subtitle.style.opacity = '1';
+        }, 180);
+      }
+
+      function setState(index) {
+        const state = states[index];
+        activeState = index;
+
+        root.style.setProperty('--airo-state-color', state.color);
+        outerRing.style.stroke = state.color;
+        outerRing.style.filter = `drop-shadow(0 0 18px ${state.color}b8)`;
+        outerRing.style.strokeDasharray = ringDash(state.cfi);
+        opportunityShape.style.transform = `scale(${scaleByLevel.opportunity[state.opportunity]})`;
+        riskShape.style.transform = `scale(${scaleByLevel.risk[state.risk]})`;
+        marketPlane.style.transform = `rotate(${state.angle}deg)`;
+        planeArrow.style.opacity = state.angle === 0 ? '0' : '1';
+
+        updateCopy(state);
+        animateScore(state.cfi);
+      }
+
+      outerRing.style.strokeDasharray = ringDash(states[0].cfi);
+      opportunityShape.style.transform = `scale(${scaleByLevel.opportunity[states[0].opportunity]})`;
+      riskShape.style.transform = `scale(${scaleByLevel.risk[states[0].risk]})`;
+      marketPlane.style.transform = `rotate(${states[0].angle}deg)`;
+
+      window.setInterval(() => {
+        setState((activeState + 1) % states.length);
+      }, 2800);
+    })();
+  </script>
+</div>
