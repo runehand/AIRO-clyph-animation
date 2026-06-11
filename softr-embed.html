@@ -1,8 +1,8 @@
-<div id="airo-capital-glyph-embed" class="airo-capital-glyph-embed">
+<div id="airo-capital-glyph-embed" class="airo-capital-glyph-embed" style="--airo-state-color: #ffbd28; --airo-asset-title-color: #ffd84a;">
   <style>
     #airo-capital-glyph-embed {
-      --airo-state-color: #78f22f;
-      --airo-asset-title-color: #9dff4a;
+      --airo-state-color: #ffbd28;
+      --airo-asset-title-color: #ffd84a;
       --airo-cyan: #8eeeff;
       --airo-ink: #f7faff;
       --airo-muted: #d8dfeb;
@@ -318,7 +318,7 @@
 
   <script>
     (() => {
-      const root = document.querySelector('#airo-capital-glyph-embed');
+      const root = document.currentScript.closest('#airo-capital-glyph-embed');
       if (!root || root.dataset.airoInitialized === 'true') return;
       root.dataset.airoInitialized = 'true';
 
