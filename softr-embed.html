@@ -8,7 +8,9 @@
       width: 100%;
       min-height: 100svh;
       display: grid;
-      place-items: center;
+      align-content: center;
+      justify-items: center;
+      gap: clamp(22px, 3.2vw, 36px);
       padding: clamp(24px, 4vw, 42px) clamp(16px, 4vw, 44px);
       color: var(--airo-ink);
       background:
@@ -27,27 +29,42 @@
     }
 
     #airo-capital-glyph-embed .airo-glyph-asset {
-      width: min(820px, 100%);
+      width: min(620px, 100%);
       display: grid;
-      justify-items: center;
-      gap: clamp(24px, 3.4vw, 38px);
-      padding: clamp(10px, 3vw, 28px);
-      background: radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.03), transparent 54%);
+      justify-items: stretch;
+      gap: clamp(8px, 1.4vw, 16px);
+      padding: clamp(14px, 2vw, 22px);
+      background:
+        radial-gradient(circle at 50% 58%, rgba(120, 242, 47, 0.06), transparent 45%),
+        linear-gradient(180deg, rgba(2, 7, 13, 0.56), rgba(0, 2, 5, 0.72));
+    }
+
+    #airo-capital-glyph-embed .airo-static-title {
+      margin: 0;
+      color: #f4f7ff;
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0;
+      text-align: center;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.46);
     }
 
     #airo-capital-glyph-embed .airo-copy {
       display: grid;
-      justify-items: center;
-      gap: 18px;
-      text-align: center;
+      justify-items: start;
+      gap: 8px;
+      text-align: left;
+      padding: 0 clamp(4px, 1vw, 10px);
     }
 
     #airo-capital-glyph-embed .airo-title {
       margin: 0;
       color: var(--airo-state-color);
-      font-size: clamp(46px, 6.4vw, 82px);
+      font-size: clamp(28px, 4.2vw, 38px);
       font-weight: 900;
-      line-height: 0.95;
+      line-height: 1;
       letter-spacing: 0;
       text-transform: uppercase;
       text-shadow: 0 0 24px color-mix(in srgb, var(--airo-state-color) 46%, transparent);
@@ -55,19 +72,20 @@
     }
 
     #airo-capital-glyph-embed .airo-subtitle {
-      max-width: 760px;
-      min-height: 36px;
+      max-width: 560px;
+      min-height: 24px;
       margin: 0;
       color: var(--airo-muted);
-      font-size: clamp(19px, 2.1vw, 28px);
+      font-size: clamp(14px, 1.8vw, 18px);
       line-height: 1.35;
-      font-weight: 500;
+      font-weight: 650;
       transition: opacity 260ms ease;
     }
 
     #airo-capital-glyph-embed .airo-glyph {
-      width: min(640px, 92vw, 62svh);
+      width: min(560px, 90vw, 58svh);
       max-width: 100%;
+      justify-self: center;
       overflow: visible;
     }
 
@@ -158,11 +176,11 @@
 
     @media (min-width: 1180px) {
       #airo-capital-glyph-embed .airo-glyph-asset {
-        width: min(860px, 100%);
+        width: min(640px, 100%);
       }
 
       #airo-capital-glyph-embed .airo-glyph {
-        width: min(640px, 88vw, 62svh);
+        width: min(560px, 82vw, 58svh);
       }
     }
 
@@ -172,25 +190,25 @@
       }
 
       #airo-capital-glyph-embed .airo-glyph-asset {
-        width: min(720px, 100%);
-        gap: clamp(22px, 4vw, 34px);
+        width: min(620px, 100%);
+        gap: clamp(10px, 2.4vw, 18px);
       }
 
       #airo-capital-glyph-embed .airo-copy {
-        gap: 14px;
+        gap: 8px;
       }
 
       #airo-capital-glyph-embed .airo-title {
-        font-size: clamp(40px, 8vw, 68px);
+        font-size: clamp(28px, 5.4vw, 38px);
       }
 
       #airo-capital-glyph-embed .airo-subtitle {
-        max-width: 640px;
-        font-size: clamp(18px, 2.7vw, 24px);
+        max-width: 560px;
+        font-size: clamp(14px, 2.2vw, 18px);
       }
 
       #airo-capital-glyph-embed .airo-glyph {
-        width: min(620px, 94vw, 64svh);
+        width: min(540px, 90vw, 58svh);
       }
     }
 
@@ -201,9 +219,15 @@
       }
 
       #airo-capital-glyph-embed .airo-glyph-asset {
-        width: 100%;
-        gap: 18px;
-        padding: 4px 0;
+        width: min(300px, 100%);
+        gap: 12px;
+        padding: 8px 0;
+      }
+
+      #airo-capital-glyph-embed .airo-static-title {
+        max-width: 100%;
+        font-size: clamp(20px, 6vw, 24px);
+        white-space: nowrap;
       }
 
       #airo-capital-glyph-embed .airo-copy {
@@ -211,26 +235,26 @@
       }
 
       #airo-capital-glyph-embed .airo-title {
-        font-size: clamp(32px, 11vw, 44px);
+        font-size: clamp(26px, 9vw, 34px);
         line-height: 1;
         text-shadow: 0 0 18px color-mix(in srgb, var(--airo-state-color) 42%, transparent);
       }
 
       #airo-capital-glyph-embed .airo-subtitle {
-        max-width: 320px;
-        min-height: 44px;
-        font-size: clamp(15px, 4.1vw, 17px);
+        max-width: 270px;
+        min-height: 40px;
+        font-size: clamp(14px, 3.8vw, 16px);
         line-height: 1.32;
       }
 
       #airo-capital-glyph-embed .airo-glyph {
-        width: min(340px, 86vw, 56svh);
+        width: min(280px, 72vw, 52svh);
       }
     }
 
     @media (max-height: 760px) and (min-width: 700px) {
       #airo-capital-glyph-embed .airo-glyph-asset {
-        gap: 18px;
+        gap: 8px;
       }
 
       #airo-capital-glyph-embed .airo-copy {
@@ -238,7 +262,7 @@
       }
 
       #airo-capital-glyph-embed .airo-title {
-        font-size: clamp(38px, 5vw, 62px);
+        font-size: clamp(26px, 4vw, 34px);
       }
 
       #airo-capital-glyph-embed .airo-subtitle {
@@ -266,10 +290,12 @@
     </defs>
   </svg>
 
-  <section class="airo-glyph-asset" aria-label="Animated capital state asset glyph">
+  <h2 class="airo-static-title">Capital Fitness Index&trade;</h2>
+
+  <section class="airo-glyph-asset" style="--airo-state-color: #ffbd28;" aria-label="Animated capital state asset glyph">
     <div class="airo-copy">
-      <h2 class="airo-title" data-airo-title>Asset A</h2>
-      <p class="airo-subtitle" data-airo-subtitle>High Opportunity, Low Risk, Favorable Environment</p>
+      <h3 class="airo-title" data-airo-title>Asset B</h3>
+      <p class="airo-subtitle" data-airo-subtitle>Balanced Opportunity and Risk, Neutral Environment</p>
     </div>
 
     <svg class="airo-glyph" viewBox="0 0 480 480" role="img" aria-label="Capital state glyph">
@@ -285,7 +311,7 @@
       </g>
       <circle class="airo-pivot" cx="240" cy="240" r="34"></circle>
       <circle class="airo-pivot-ring" cx="240" cy="240" r="35"></circle>
-      <text class="airo-center-score" data-airo-center-score x="240" y="240">82</text>
+      <text class="airo-center-score" data-airo-center-score x="240" y="240">58</text>
     </svg>
   </section>
 
@@ -340,8 +366,9 @@
       const marketPlane = root.querySelector('[data-airo-market-plane]');
       const planeArrow = root.querySelector('[data-airo-plane-arrow]');
 
-      let activeState = 0;
-      let currentScore = states[0].cfi;
+      const initialState = 1;
+      let activeState = initialState;
+      let currentScore = states[initialState].cfi;
 
       function ringDash(score) {
         return `${Math.max(18, ringCircumference * (score / 100))} ${ringCircumference}`;
@@ -392,10 +419,15 @@
         animateScore(state.cfi);
       }
 
-      outerRing.style.strokeDasharray = ringDash(states[0].cfi);
-      opportunityShape.style.transform = `scale(${scaleByLevel.opportunity[states[0].opportunity]})`;
-      riskShape.style.transform = `scale(${scaleByLevel.risk[states[0].risk]})`;
-      marketPlane.style.transform = `rotate(${states[0].angle}deg)`;
+      const initial = states[initialState];
+      root.style.setProperty('--airo-state-color', initial.color);
+      outerRing.style.stroke = initial.color;
+      outerRing.style.filter = `drop-shadow(0 0 18px ${initial.color}b8)`;
+      outerRing.style.strokeDasharray = ringDash(initial.cfi);
+      opportunityShape.style.transform = `scale(${scaleByLevel.opportunity[initial.opportunity]})`;
+      riskShape.style.transform = `scale(${scaleByLevel.risk[initial.risk]})`;
+      marketPlane.style.transform = `rotate(${initial.angle}deg)`;
+      planeArrow.style.opacity = initial.angle === 0 ? '0' : '1';
 
       window.setInterval(() => {
         setState((activeState + 1) % states.length);
