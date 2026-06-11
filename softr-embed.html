@@ -2,6 +2,7 @@
   <style>
     #airo-capital-glyph-embed {
       --airo-state-color: #78f22f;
+      --airo-asset-title-color: #9dff4a;
       --airo-cyan: #8eeeff;
       --airo-ink: #f7faff;
       --airo-muted: #d8dfeb;
@@ -61,13 +62,13 @@
 
     #airo-capital-glyph-embed .airo-title {
       margin: 0;
-      color: var(--airo-state-color);
+      color: var(--airo-asset-title-color);
       font-size: clamp(28px, 4.2vw, 38px);
       font-weight: 900;
       line-height: 1;
       letter-spacing: 0;
       text-transform: uppercase;
-      text-shadow: 0 0 24px color-mix(in srgb, var(--airo-state-color) 46%, transparent);
+      text-shadow: 0 0 24px color-mix(in srgb, var(--airo-asset-title-color) 46%, transparent);
       transition: color 850ms ease, text-shadow 850ms ease, opacity 260ms ease;
     }
 
@@ -237,7 +238,7 @@
       #airo-capital-glyph-embed .airo-title {
         font-size: clamp(26px, 9vw, 34px);
         line-height: 1;
-        text-shadow: 0 0 18px color-mix(in srgb, var(--airo-state-color) 42%, transparent);
+        text-shadow: 0 0 18px color-mix(in srgb, var(--airo-asset-title-color) 42%, transparent);
       }
 
       #airo-capital-glyph-embed .airo-subtitle {
@@ -292,7 +293,7 @@
 
   <h2 class="airo-static-title">Capital Fitness Index&trade;</h2>
 
-  <section class="airo-glyph-asset" style="--airo-state-color: #ffbd28;" aria-label="Animated capital state asset glyph">
+  <section class="airo-glyph-asset" style="--airo-state-color: #ffbd28; --airo-asset-title-color: #ffd84a;" aria-label="Animated capital state asset glyph">
     <div class="airo-copy">
       <h3 class="airo-title" data-airo-title>Asset B</h3>
       <p class="airo-subtitle" data-airo-subtitle>Balanced Opportunity and Risk, Neutral Environment</p>
@@ -329,7 +330,8 @@
           opportunity: 3,
           risk: 1,
           angle: -11,
-          color: '#78f22f'
+          color: '#78f22f',
+          titleColor: '#9dff4a'
         },
         {
           title: 'Asset B',
@@ -338,7 +340,8 @@
           opportunity: 2,
           risk: 2,
           angle: 0,
-          color: '#ffbd28'
+          color: '#ffbd28',
+          titleColor: '#ffd84a'
         },
         {
           title: 'Asset C',
@@ -347,7 +350,8 @@
           opportunity: 1,
           risk: 3,
           angle: 12,
-          color: '#ff241d'
+          color: '#ff241d',
+          titleColor: '#ff6a5f'
         }
       ];
 
@@ -407,6 +411,7 @@
         activeState = index;
 
         root.style.setProperty('--airo-state-color', state.color);
+        root.style.setProperty('--airo-asset-title-color', state.titleColor);
         outerRing.style.stroke = state.color;
         outerRing.style.filter = `drop-shadow(0 0 18px ${state.color}b8)`;
         outerRing.style.strokeDasharray = ringDash(state.cfi);
@@ -421,6 +426,7 @@
 
       const initial = states[initialState];
       root.style.setProperty('--airo-state-color', initial.color);
+      root.style.setProperty('--airo-asset-title-color', initial.titleColor);
       outerRing.style.stroke = initial.color;
       outerRing.style.filter = `drop-shadow(0 0 18px ${initial.color}b8)`;
       outerRing.style.strokeDasharray = ringDash(initial.cfi);

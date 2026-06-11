@@ -7,6 +7,7 @@
   <style>
     :root {
       --state-color: #78f22f;
+      --asset-title-color: #9dff4a;
       --green: #78f22f;
       --amber: #ffbd28;
       --red: #ff241d;
@@ -72,13 +73,13 @@
 
     .asset-title {
       margin: 0;
-      color: var(--state-color);
+      color: var(--asset-title-color);
       font-size: clamp(28px, 4.2vw, 38px);
       font-weight: 900;
       line-height: 1;
       letter-spacing: 0;
       text-transform: uppercase;
-      text-shadow: 0 0 24px color-mix(in srgb, var(--state-color) 46%, transparent);
+      text-shadow: 0 0 24px color-mix(in srgb, var(--asset-title-color) 46%, transparent);
       transition: color 850ms ease, text-shadow 850ms ease, opacity 260ms ease;
     }
 
@@ -248,7 +249,7 @@
       .asset-title {
         font-size: clamp(26px, 9vw, 34px);
         line-height: 1;
-        text-shadow: 0 0 18px color-mix(in srgb, var(--state-color) 42%, transparent);
+        text-shadow: 0 0 18px color-mix(in srgb, var(--asset-title-color) 42%, transparent);
       }
 
       .asset-subtitle {
@@ -305,7 +306,7 @@
   <main>
     <h1 class="static-title">Capital Fitness Index&trade;</h1>
 
-    <section class="asset-glyph" id="assetGlyph" style="--state-color: #ffbd28;" aria-label="Animated capital state asset glyph">
+    <section class="asset-glyph" id="assetGlyph" style="--state-color: #ffbd28; --asset-title-color: #ffd84a;" aria-label="Animated capital state asset glyph">
       <div class="copy">
         <h2 class="asset-title" id="assetTitle">Asset B</h2>
         <p class="asset-subtitle" id="assetSubtitle">Balanced Opportunity and Risk, Neutral Environment</p>
@@ -338,7 +339,8 @@
         opportunity: 3,
         risk: 1,
         angle: -11,
-        color: '#78f22f'
+        color: '#78f22f',
+        titleColor: '#9dff4a'
       },
       {
         title: 'Asset B',
@@ -347,7 +349,8 @@
         opportunity: 2,
         risk: 2,
         angle: 0,
-        color: '#ffbd28'
+        color: '#ffbd28',
+        titleColor: '#ffd84a'
       },
       {
         title: 'Asset C',
@@ -356,7 +359,8 @@
         opportunity: 1,
         risk: 3,
         angle: 12,
-        color: '#ff241d'
+        color: '#ff241d',
+        titleColor: '#ff6a5f'
       }
     ];
 
@@ -417,6 +421,7 @@
       activeState = index;
 
       root.style.setProperty('--state-color', state.color);
+      root.style.setProperty('--asset-title-color', state.titleColor);
       outerRing.style.stroke = state.color;
       outerRing.style.filter = `drop-shadow(0 0 18px ${state.color}b8)`;
       outerRing.style.strokeDasharray = ringDash(state.cfi);
@@ -431,6 +436,7 @@
 
     const initial = states[initialState];
     root.style.setProperty('--state-color', initial.color);
+    root.style.setProperty('--asset-title-color', initial.titleColor);
     outerRing.style.stroke = initial.color;
     outerRing.style.filter = `drop-shadow(0 0 18px ${initial.color}b8)`;
     outerRing.style.strokeDasharray = ringDash(initial.cfi);
